@@ -18,6 +18,8 @@ function login($username, $password){
 
     if ($result == 1){
         return true;
+    } else {
+        return false;
     }
 }
 
