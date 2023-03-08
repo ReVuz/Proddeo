@@ -8345,4 +8345,11 @@ textarea.form-control {
       .btn.btn-primary.btn-outline-primary:hover {
         border: 1px solid transparent;
         background: #fbceb5;
-        color: #fff; }
+        color: #fff; }      
+.page-links{
+  color:#fff;
+} 
+.page-links:hover{
+  color:#fbceb5;
+  transition:0.2s;
+}

@@ -4,7 +4,7 @@
     left: 0px;
     right: 0px;
     top: 0px;
-    background: linear-gradient(#FFFFFF,#737B7D);
+    background: linear-gradient(#84c8dfe6,white,#84c8dfe6);
 }
 .footer {
     position: relative; /* make the parent element position-relative */
@@ -79,8 +79,8 @@ body{
 .btn{
     width: 89px;
     height: 42px;
-    background: radial-gradient(Blue, purple);
-    border: none;
+    background:#2aa4cde6;
+    border: solid black 0.2px;
 
     font-family: 'Mulish';
     font-style: normal;
