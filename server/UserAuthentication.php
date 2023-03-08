@@ -2,6 +2,25 @@
 
 require 'vendor/autoload.php';
 
+#   login() takes username and password returns true if it is registered and the password is correct else return false
+
+function login($username, $password){
+
+
+    $client = new MongoDB\Client;
+    $database = $client->Prodeo;
+    $collection = $database->users;
+
+
+    $result = $collection->count(
+        ['Username' => $username , 'Password' => $password]
+    );
+
+    if ($result == 1){
+        return true;
+    }
+}
+
 #   checkValidPassword() checks for a valid password, returns true for valid password and false for invalid passwords.
 
 function checkValidPassword($password){
@@ -79,11 +98,7 @@ function checkValidUsername($username){
 }
 
 
-#   SignUP() checks for all the constraints for username, password and email. If anything is invalid returns a message telling what is wrong 
-#   If everything is valid it outputs 1
-
-function SignUP(string $email, string $username, string $password){
-    
+function checkValidSignup($email, $username, $password){
     $client = new MongoDB\Client;
     $database = $client->Prodeo;
     $collection = $database->users;
@@ -110,6 +125,41 @@ function SignUP(string $email, string $username, string $password){
     }
 
 
+    return 'Success';
+}
+
+
+#   SignUP() checks for all the constraints for username, password and email. If anything is invalid returns a message telling what is wrong 
+#   If everything is valid it outputs 1
+
+function signup(string $email, string $username, string $password){
+    
+    $client = new MongoDB\Client;
+    $database = $client->Prodeo;
+    $collection = $database->users;
+
+    $isValidEmail = checkValidEmail($email);
+    if ($isValidEmail == -1){
+        return false;
+    } else if ($isValidEmail == 0){
+        return false;
+    }
+
+
+    $isValidUsername = checkValidUsername($username);
+    if ($isValidUsername == -1){
+        return false;
+    } else if ($isValidUsername == 0){
+        return false;
+    }
+
+
+    $isValidPassword = checkValidPassword($password);
+    if ($isValidPassword){
+        return false;
+    }
+
+
     $collection->insertOne(
         [
             '_id'       => $email,
@@ -119,7 +169,7 @@ function SignUP(string $email, string $username, string $password){
         ]
         );
     
-        return 1;
+    return true;
 }
 
-?> 
+?>
